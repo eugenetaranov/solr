@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-''' Retrieves list of cores from the old server and created them on the new one '''
+''' Retrieves list of cores from the old server and creates them on the new one '''
 
 from sys import exit
 from json import load
