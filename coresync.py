@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import signal
+from signal import signal, SIGINT
 from sys import exit
 from json import load
 from urllib import urlopen
@@ -56,5 +56,5 @@ def main():
 if __name__ == '__main__':
     params = parseargs()
     verbose = params['verbose']
-    signal.signal(signal.SIGINT, signal_handler)
+    signal(SIGINT, signal_handler)
     main()
