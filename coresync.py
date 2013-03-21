@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import signal
 from sys import exit
 from json import load
 from urllib import urlopen
@@ -10,6 +11,11 @@ verbose = False
 status = 'http://%s:%s/solr/admin/cores?wt=json'
 create = 'http://%(host)s:%(port)s/solr/admin/cores?action=CREATE&name=%(core)s&instanceDir=default_merge&config=solrconfig.xml&schema=schema.xml&dataDir=../%(core)s'
 sleeptime = 0.1
+
+
+def signal_handler(signal, frame):
+    print '\nExiting ...'
+    exit(1)
 
 def parseargs():
     p = ArgumentParser()
@@ -50,4 +56,5 @@ def main():
 if __name__ == '__main__':
     params = parseargs()
     verbose = params['verbose']
+    signal.signal(signal.SIGINT, signal_handler)
     main()
